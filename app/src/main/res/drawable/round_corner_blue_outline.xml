@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Outer stroke -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <corners android:radius="8dp" />
+            <stroke
+                android:color="#CCD5FF"
+                android:width="4dp" />
+        </shape>
+    </item>
+
+    <!-- Inner stroke (blue line) -->
+    <item
+        android:left="2dp"
+        android:top="2dp"
+        android:right="2dp"
+        android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <corners android:radius="6dp" />
+            <stroke
+                android:color="#002FFF"
+            android:width="1dp" />
+        </shape>
+    </item>
+
+</layer-list>

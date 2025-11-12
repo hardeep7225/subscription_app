@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Netflix",
+    "image": "netflix"
+  },
+  {
+    "id": 1,
+    "name": "Hulu",
+    "image": "hulu"
+  },
+  {
+    "id": 1,
+    "name": "Spotify",
+    "image": "spoticon"
+  },
+  {
+    "id": 1,
+    "name": "Playstation +",
+    "image": "psicon"
+  },
+  {
+    "id": 1,
+    "name": "Paramount +",
+    "image": "paramount"
+  },
+  {
+    "id": 1,
+    "name": "You Tube Music",
+    "image": "utube"
+  }
+]
