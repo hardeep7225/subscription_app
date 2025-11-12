@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity(), CallbackServiceSelected {
     private lateinit var adapter: ServiceAdapter
     private val calendar = Calendar.getInstance()
 
-    private var frequencySelected = ""
+    private var frequencySelected = "Weekly"
     private val startedDateSelected = ""
-    private var categorySelected = ""
+    private var categorySelected = "Subscription"
     private var activeService = false
 
 
