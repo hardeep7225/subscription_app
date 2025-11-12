@@ -104,7 +104,7 @@
                     android:id="@+id/tvServicePrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$ 15"
+                    android:text="$ 0"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@+id/tvChooseService"
                     app:layout_constraintStart_toStartOf="parent"
@@ -142,18 +142,18 @@
 
                 <TextView
                     android:id="@+id/tvServiceName"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
                     android:textSize="16sp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="#667085"
                     android:textAlignment="textStart"
                     android:layout_marginEnd="10dp"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ctChooseServiceWithUpDown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -162,23 +162,23 @@
 
                     <TextView
                         android:id="@+id/tvServiceNameChosen"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Choose a service"
                         android:textSize="14sp"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivUpDownService"
                         android:textColor="#667085"
                         android:textAlignment="textStart"
                         android:layout_marginEnd="10dp"
                         />
 
                     <ImageView
+                        android:id="@+id/ivUpDownService"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/up_down"
-                        app:layout_constraintStart_toEndOf="@+id/tvServiceNameChosen"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -268,29 +268,30 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/refresh"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tvServiceCategoryChosen"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginEnd="7dp"/>
 
                     <TextView
                         android:id="@+id/tvServiceCategoryChosen"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Subscription"
                         android:textSize="14sp"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/ivRefresh"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivSubscriptionUpDown"
                         android:textColor="#667085"
                         android:textAlignment="textStart"
                         android:layout_marginEnd="10dp"
                         />
 
                     <ImageView
+                        android:id="@+id/ivSubscriptionUpDown"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/up_down"
-                        app:layout_constraintStart_toEndOf="@+id/tvServiceCategoryChosen"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -401,9 +402,9 @@
 
                     <TextView
                         android:id="@+id/tvServiceFrequencyChosen"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Weekly"
+                        android:text="Choose a frequency"
                         android:textSize="14sp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -462,7 +463,7 @@
                         android:layout_height="wrap_content"
                         android:thumbTint="@color/switch_thumb_color"
                         android:trackTint="@color/switch_track_color"
-                        android:checked="true"
+                        android:checked="false"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -488,7 +489,8 @@
         android:layout_height="45dp"
         app:layout_constraintTop_toBottomOf="@+id/cvServicePeriod"
         android:layout_margin="20dp"
-        android:background="@drawable/round_corner_rect">
+        android:background="@drawable/round_corner_rect"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -1030,16 +1032,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/ctBottomFrequencyTop"
                 tools:layout_editor_absoluteX="0dp">
 
-<!--                <ImageView-->
-<!--                    android:layout_width="25dp"-->
-<!--                    android:layout_height="25dp"-->
-<!--                    android:src="@drawable/refresh"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    android:layout_marginStart="10dp"-->
-<!--                    />-->
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1079,16 +1071,6 @@
                 android:padding="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/ctBottomWeeklyFrequency"
                 tools:layout_editor_absoluteX="0dp">
-
-<!--                <ImageView-->
-<!--                    android:layout_width="25dp"-->
-<!--                    android:layout_height="25dp"-->
-<!--                    android:src="@drawable/setting"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    android:layout_marginStart="10dp"-->
-<!--                    />-->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1131,15 +1113,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/ctBottomMontlyFrequency"
                 tools:layout_editor_absoluteX="0dp">
 
-<!--                <ImageView-->
-<!--                    android:layout_width="25dp"-->
-<!--                    android:layout_height="25dp"-->
-<!--                    android:src="@drawable/card"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    android:layout_marginStart="10dp"-->
-<!--                    />-->
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity(), CallbackServiceSelected {
     private lateinit var adapter: ServiceAdapter
     private val calendar = Calendar.getInstance()
 
-    private val frequencySelected = ""
+    private var frequencySelected = ""
     private val startedDateSelected = ""
-    private val categorySelected = ""
+    private var categorySelected = ""
     private var activeService = false
 
 
@@ -70,11 +70,54 @@ class MainActivity : AppCompatActivity(), CallbackServiceSelected {
             binding.ctServiceDropDown.visibility = View.VISIBLE
         }
 
+        binding.ctChooseServiceWithUpDown.setOnClickListener {
+            binding.ctServiceDropDown.visibility = View.VISIBLE
+        }
+
+        binding.swServiceActive.setOnCheckedChangeListener { _, isChecked ->
+            activeService = isChecked
+            //Log.d("ServiceStatus", "Service Active: $serviceActive")
+        }
+
+        binding.ctDeleteService.setOnClickListener {
+            binding.tvServiceNameChosen.text = "Choose a service"
+            binding.tvServiceCategoryChosen.text = "Subscription"
+            binding.tvServiceFrequencyChosen.text = "Weekly"
+            binding.tvServiceFrequencyChosen.text = "Choose a frequency"
+            binding.tvChooseService.text = "Choose a service"
+            binding.tvServiceNameChosen.text = "Choose a service"
+            binding.tvServicePrice.text = "$ 0"
+            binding.tvServiceAmountChosen.text = "$ 0"
+
+            binding.swServiceActive.isActivated = false
+
+            val resId = this.resources.getIdentifier("plus_round_icon", "drawable", this.packageName)
+            binding.ivChooseService.setImageResource(resId)
+
+            val ivCross = this.resources.getIdentifier("cross", "drawable", this.packageName)
+            binding.ivTopNav.setImageResource(ivCross)
+
+            val unselected = ContextCompat.getColor(this, R.color.unselected)
+            binding.tvSave.setTextColor(unselected)
+            binding.tvChooseService.setTextColor(unselected)
+            binding.tvServicePrice.setTextColor(unselected)
+            binding.tvServiceNameChosen.setTextColor(unselected)
+            binding.tvServiceCategoryChosen.setTextColor(unselected)
+            binding.tvServiceFrequencyChosen.setTextColor(unselected)
+
+            binding.ctDeleteService.visibility = View.GONE
+
+        }
+
         binding.tvDdServiceDone.setOnClickListener {
             binding.ctServiceDropDown.visibility = View.GONE
         }
 
         binding.tvBtmCategoryDone.setOnClickListener {
+            if (!categorySelected.isEmpty()) {
+                binding.tvServiceCategoryChosen.text = categorySelected
+            }
+
             binding.ctCategoryView.visibility = View.GONE
         }
 
@@ -83,9 +126,7 @@ class MainActivity : AppCompatActivity(), CallbackServiceSelected {
         }
 
         binding.ctBottomCategorySubscription.setOnClickListener {
-
-            categorySelected =
-
+            categorySelected = "Subscription"
             binding.ivBottomSubscriptionSelected.visibility = View.VISIBLE
             binding.ivBottomUtilitySelected.visibility = View.GONE
             binding.ivBottomCardSelected.visibility = View.GONE
@@ -94,6 +135,7 @@ class MainActivity : AppCompatActivity(), CallbackServiceSelected {
 
         }
         binding.ctBottomCategoryUtility.setOnClickListener {
+            categorySelected = "Utility"
             binding.ivBottomSubscriptionSelected.visibility = View.GONE
             binding.ivBottomUtilitySelected.visibility = View.VISIBLE
             binding.ivBottomCardSelected.visibility = View.GONE
@@ -101,6 +143,7 @@ class MainActivity : AppCompatActivity(), CallbackServiceSelected {
             binding.ivBottomRentSelected.visibility = View.GONE
              }
         binding.ctBottomCategoryCard.setOnClickListener {
+            categorySelected = "Card"
             binding.ivBottomSubscriptionSelected.visibility = View.GONE
             binding.ivBottomUtilitySelected.visibility = View.GONE
             binding.ivBottomCardSelected.visibility = View.VISIBLE
@@ -108,6 +151,7 @@ class MainActivity : AppCompatActivity(), CallbackServiceSelected {
             binding.ivBottomRentSelected.visibility = View.GONE
              }
         binding.ctBottomCategoryLoan.setOnClickListener {
+            categorySelected = "Loan"
             binding.ivBottomSubscriptionSelected.visibility = View.GONE
             binding.ivBottomUtilitySelected.visibility = View.GONE
             binding.ivBottomCardSelected.visibility = View.GONE
@@ -115,6 +159,7 @@ class MainActivity : AppCompatActivity(), CallbackServiceSelected {
             binding.ivBottomRentSelected.visibility = View.GONE
              }
         binding.ctBottomCategoryRent.setOnClickListener {
+            categorySelected = "Rent"
             binding.ivBottomSubscriptionSelected.visibility = View.GONE
             binding.ivBottomUtilitySelected.visibility = View.GONE
             binding.ivBottomCardSelected.visibility = View.GONE
@@ -165,20 +210,27 @@ class MainActivity : AppCompatActivity(), CallbackServiceSelected {
         }
 
         binding.tvBtmFrequencyDone.setOnClickListener {
+            if (!frequencySelected.isEmpty()) {
+                binding.tvServiceFrequencyChosen.text = frequencySelected
+            }
+            binding.tvServiceFrequencyChosen.text = frequencySelected
             binding.ctBottomFrequencyView.visibility = View.GONE
         }
 
         binding.ctBottomWeeklyFrequency.setOnClickListener {
+            frequencySelected = "Weekly"
             binding.ivBottomWeeklySelected.visibility = View.VISIBLE
             binding.ivBottomMontlySelected.visibility = View.GONE
             binding.ivBottomYearlySelected.visibility = View.GONE
         }
         binding.ctBottomMontlyFrequency.setOnClickListener {
+            frequencySelected = "Monthly"
             binding.ivBottomWeeklySelected.visibility = View.GONE
             binding.ivBottomMontlySelected.visibility = View.VISIBLE
             binding.ivBottomYearlySelected.visibility = View.GONE
         }
         binding.ctBottomYearlyFrequency.setOnClickListener {
+            frequencySelected = "Yearly"
             binding.ivBottomWeeklySelected.visibility = View.GONE
             binding.ivBottomMontlySelected.visibility = View.GONE
             binding.ivBottomYearlySelected.visibility = View.VISIBLE
@@ -202,11 +254,14 @@ class MainActivity : AppCompatActivity(), CallbackServiceSelected {
         // Deselect all others
         services.forEach { it.selected = it == service }
 
+        binding.ctDeleteService.visibility = View.VISIBLE
+
         // Update main UI
         binding.tvChooseService.text = service.name
+        binding.tvServiceNameChosen.text = service.name
 
-        binding.tvServicePrice.text = "₹${service.price}"
-        binding.tvServiceAmountChosen.text = "₹${service.price}"
+        binding.tvServicePrice.text = "$ ${service.price}"
+        binding.tvServiceAmountChosen.text = "$ ${service.price}"
 
         // Change text color to black when selected
         val black = ContextCompat.getColor(this, android.R.color.black)
